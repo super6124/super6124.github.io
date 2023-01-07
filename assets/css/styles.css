@@ -227,6 +227,7 @@ img {
 
 .nav__link{
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   font-size: var(--small-font-size);
@@ -236,6 +237,21 @@ img {
 
 .nav__link:hover{
   color: var(--first-color);
+}
+
+.nav__link:after{
+  content: "";
+  position: absolute;
+  background-color: var(--first-color);
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -10px;
+  transition: 0.3s;
+}
+
+.nav__link:hover:after{
+  width: 100%;
 }
 
 .nav__icon{
