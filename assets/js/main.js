@@ -30,21 +30,22 @@ function linkAction() {
 navLink.forEach(n => n.addEventListener('click', linkAction))
 
 /*==================== NUMBER COUNTING ====================*/
-let valueDisplays = document.querySelectorAll(".num");
-let interval = 1;
+const valueDisplays = document.querySelectorAll(".num");
 
 valueDisplays.forEach(valueDisplay => {
-    let startValue = 0;
-    let endValue = parseInt(valueDisplay.getAttribute('data-val'));
-    let duration = Math.floor(interval / endValue);
-    let counter = setInterval(() => {
-        startValue += 1;
-        valueDisplay.textContent = startValue;
-        if(startValue === endValue) {
-            clearInterval(counter);
+    valueDisplay.innerText = '0'
+    const updateValueDisplay = () => {
+        const target = +valueDisplay.getAttribute('data-val');
+        const c = +valueDisplay.innerText
+        const increment = target / 250;
+
+        if(c < target){
+            valueDisplay.innerText = `${Math.ceil(c + increment)}`;
+            setTimeout(updateValueDisplay, 1)
         }
-    }, duration)
-})
+    };
+    updateValueDisplay();
+});
 
 /*==================== ACCORDION SKILLS ====================*/
 const skillsContent = document.getElementsByClassName('skills__content'),
