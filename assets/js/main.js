@@ -143,3 +143,20 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+/*==================== CURSOR ====================*/
+const cursor = document.querySelector('.cursor');
+
+//follow cursor on mousemove
+document.addEventListener("mousemove", (e) => {
+    let x = e.clientX;
+    let y = e.clientY;
+    
+    cursor.style.top = y + 'px';
+    cursor.style.left = x + 'px';
+    cursor.style.display = "block";
+})
+
+document.addEventListener("mouseout", () => {
+    cursor.style.display = "none";
+})
