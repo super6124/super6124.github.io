@@ -299,12 +299,14 @@ img {
 }
 
 .home__social{
-  display: grid;
-  grid-template-columns: max-content;
-  row-gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: max-content;
+  row-gap: 1rem; */
 }
 
 .home__social-icon{
+  margin-bottom: 1rem;
   font-size: 1.25rem;
   color: var(--first-color);
 }
