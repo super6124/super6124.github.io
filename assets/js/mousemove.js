@@ -43,15 +43,15 @@ class Particle {
         this.position.add(this.velocity);
         this.acceleration.reset(0,0);
         this.alpha -= 0.008;
-        if (this.alpha < 0) this.alpha = 0;
+        this.alpha = Math.max(this.alpha, 0)
     }
     
     follow() {
-        var x = Math.floor(this.position.x / 20);
-        var y = Math.floor(this.position.y / 20);
-        var index = x * Math.floor(height/20) + y;
-        var force = forces[index];
-        if (force) this.applyForce(force);
+        let x = Math.floor(this.position.x / 20);
+        let y = Math.floor(this.position.y / 20);
+        let index = x * Math.floor(height/20) + y;
+        let force = forces[index];
+        if (force) { this.applyForce(force); }
     }
 
     applyForce(force) {
@@ -79,11 +79,11 @@ const resize = () => {
 }
 
 const initForces = () => {
-    var i = 0;
-    for (var x = 0; x < width; x+=20) {
-        for (var y = 0; y < height; y+=20) {
-        if (!forces[i]) forces[i] = new V2();
-        i++;
+    let i = 0;
+    for (let x = 0; x < width; x+=20) {
+        for (let y = 0; y < height; y+=20) {
+            if (!forces[i]) { forces[i] = new V2(); }
+            i++;
         }
     }
     
@@ -93,28 +93,28 @@ const initForces = () => {
 }
 
 const updateForces = t => {
-    var i = 0;
+    let i = 0;
     var xOff = 0, yOff = 0;
-    for (var x = 0; x < width; x+=20) {
+    for (let x = 0; x < width; x+=20) {
         xOff += 0.1;
-        for (var y = 0; y < height; y+=20) {
-        yOff += 0.1;
-        let a = noise.perlin3(xOff, yOff, t*0.00005) * Math.PI * 4;
-        if (forces[i]) forces[i].reset(Math.cos(a)*0.1, Math.sin(a)*0.1);
-        i++;
+        for (let y = 0; y < height; y+=20) {
+            yOff += 0.1;
+            let a = noise.perlin3(xOff, yOff, t*0.00005) * Math.PI * 4;
+            if (forces[i]) { forces[i].reset(Math.cos(a)*0.1, Math.sin(a)*0.1); }
+            i++;
         }
     }
 }
 
 const initParticles = () => {
-    for (var i = 0; i < nParticles; i++) {
+    for (let i = 0; i < nParticles; i++) {
         particles.push(new Particle(Math.random()*width, Math.random()*height));
         particles[i].velocity.y = 0.1;
     }
 }
 
 const drawParticles = () => {
-    for (var i = 0; i < nParticles; i++) {
+    for (let i = 0; i < nParticles; i++) {
         particles[i].update();
         particles[i].follow();
         particles[i].draw();
@@ -127,7 +127,7 @@ const launchParticle = () => {
     particles[p].color = `hsl(${Math.floor(emitter.x/width*256)},40%,${60+Math.random()*20}%)`;
     particles[p].alpha = 1;
     p++;
-    if (p === nParticles) p = 0;
+    if (p === nParticles) { p = 0; }
 }
 
 const updateEmitter = () => {
@@ -158,5 +158,3 @@ requestAnimationFrame(animate);
 window.addEventListener('resize', resize);
 window.addEventListener('mousemove', pointerMove);
 window.addEventListener('touchmove', pointerMove);
-
-
