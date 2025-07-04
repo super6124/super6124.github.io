@@ -18,8 +18,8 @@ You can create a blog website with the following 3 command. Sounds simple right?
 $ npm install hexo-cli -g   					# Install Hexo
 $ hexo init blog            					# Create blog website
 $ cd blog
-$ hexo new "<Title of you blog post>"	# Create new post
-$ hexo s															# Set up server on localhost:4000
+$ hexo new "<Title of you blog post>" # Create new post
+$ hexo s				                      # Set up server on localhost:4000
 ```
 
 ## Github Pages
