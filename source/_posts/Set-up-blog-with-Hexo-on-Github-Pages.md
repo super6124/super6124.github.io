@@ -15,12 +15,12 @@ Hexo is a framework which convert markdown file into html page. Markdown has rel
 You can create a blog website with the following 3 command. Sounds simple right?
 
 ``` bash
-$ npm install hexo-cli -g   # Install Hexo
-$ hexo init blog            # Create blog website
+$ npm install hexo-cli -g   					# Install Hexo
+$ hexo init blog            					# Create blog website
 $ cd blog
+$ hexo new "<Title of you blog post>"	# Create new post
+$ hexo s															# Set up server on localhost:4000
 ```
-
-You can create new posts by `hexo new "<Title of you blog post>"`. If you want to see the result, type `hexo s` and check on `localhost:4000`.
 
 ## Github Pages
 
@@ -36,7 +36,7 @@ name: Pages
 on:
   push:
     branches:
-      - main # default branch
+      - <main or master>
 
 jobs:
   build:
